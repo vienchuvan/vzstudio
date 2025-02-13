@@ -1,13 +1,12 @@
-import './assets/css/main.css'
+
 import './assets/css/bootstrap.css'
-import './assets/css/style.css'
 import './assets/css/taptap.css'
 
 import './assets/css/star.sass'
 import './assets/css/dvcrop.css'
 // import 'bootstrap/dist/js/bootstrap.bundle.min.js' // Import Bootstrap JS
 import './assets/css/styles.css' 
-
+import './assets/css/animation.css' 
 // import './assets/js/owl-carousel.js'
 // import './assets/js/animation.js'
 // import './assets/js/imagesloaded.js'

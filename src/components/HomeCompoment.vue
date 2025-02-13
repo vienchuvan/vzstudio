@@ -1,296 +1,239 @@
 <template>
-  <div class="d-flex flex-column main-banner">
-    <div class="fixed-top header-area">
-      <nav
-        id="navbarExample"
-        class="navbar navbar-expand-lg fixed-top navbar-light navbar navbar-expand-lg navbar-dark"
-        aria-label="Main navigation"
-      >
-        <div class="d-flex w-100">
-          <a
-            class="navbar-brand"
-            href="#"
-            style="text-transform: uppercase; align-items: center; display: flex"
-          >
-            <img style="width: 100px" :src="imageUrls.logoCty" />
-          </a>
-          <button class="navbar-toggler" type="button" @click="toggleNavbar">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div
-            class="collapse navbar-collapse"
-            :class="{ show: isNavbarOpen }"
-            id="navbarResponsive"
-          >
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="#" @click="goToGioiThieu()"
-                  >Giới thiệu <span class="sr-only">(current)</span></a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" @click="goToSanPham()">Sản Phẩm</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" @click="goToGiaoDien()">Giao diện</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" @click="goToHuongDan()">Hướng dẫn</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" @click="lienHe()">Liên hệ</a>
-              </li>
-              <li class="nav-item ml-4">
-                <a class="nav-link" href="/dangnhap"
-                  ><i class="fa fa-user-circle-o" aria-hidden="true"></i> Đăng nhập</a
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </div>
-    <div class="d-flex flex-column p-0 mt-5">
-      <div class="star"></div>
-      <div class="meteor-1"></div>
-      <div class="meteor-2"></div>
-      <div class="meteor-3"></div>
-      <div class="meteor-4"></div>
-      <div class="meteor-5"></div>
-      <div class="meteor-6"></div>
-      <div class="meteor-7"></div>
-      <div class="meteor-8"></div>
-      <div class="meteor-9"></div>
-      <div class="meteor-10"></div>
-      <div class="meteor-11"></div>
-      <div class="meteor-12"></div>
-      <div class="meteor-13"></div>
-      <div class="meteor-14"></div>
-      <div class="meteor-15"></div>
+  <header class="header-dv-crop" :class="{ active: isScrolled }" data-header>
+    <div class="container-dv-crop">
+      <div
+        class="overlay"
+        :class="{ active: isNavOpen }"
+        @click="toggleNav"
+        data-overlay
+      ></div>
 
+      <a href="#">
+        <img style="width: 70px; height: 70px" :src="imageUrls.logoCty" />
+      </a>
+
+      <nav class="navbar-dv-crop" :class="{ active: isNavOpen }" data-navbar>
+        <div class="navbar-top">
+          <!-- <a href="#" class="logo">Ted Martins</a> -->
+          <button
+            class="nav-close-btn"
+            aria-label="Close Menu"
+            @click="toggleNav"
+            data-nav-close-btn
+          >
+            <ion-icon name="close-outline"></ion-icon>
+          </button>
+        </div>
+
+        <ul class="navbar-list">
+          <li class="navbar-item">
+            <a href="#gioiThieu" class="navbar-link" data-navbar-link>Giới thiệu</a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="#about" class="navbar-link" data-navbar-link>Trang chủ</a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="#services" class="navbar-link" data-navbar-link>Dịch vụ</a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="#features" class="navbar-link" data-navbar-link>Tư Vấn</a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="#blog" class="navbar-link" data-navbar-link>Liên hệ</a>
+          </li>
+
+          <!-- <li class="navbar-item">
+            <a href="#" class="navbar-link" data-navbar-link>Contact Us</a>
+          </li> -->
+        </ul>
+      </nav>
+
+      <button
+        class="nav-open-btn"
+        aria-label="Open Menu"
+        @click="toggleNav"
+        data-nav-open-btn
+      >
+        <ion-icon name="menu-outline"></ion-icon>
+      </button>
+    </div>
+  </header>
+  <div class="d-flex flex-column main-banner">
+    <div class="d-flex flex-column p-0 mt-5">
       <div class="row p-5 align-items-center banner-bg mt-5">
-        <div class="col-md-5" style="color: white; font-family: math; font-weight: 600">
-          <div class="d-flex flex-column">
-            <h1 class="d-flex justify-content-end slide-in" style="color: white">
-              DANH THIẾP ĐIỆN TỬ
-            </h1>
-            <div class="d-flex justify-content-end slide-in-right">
-              <span class="mt-1 d-flex justify-content-end p-1 bgred"
-                >MỘT CHẠM THÔNG MINH</span
-              >
-            </div>
-          </div>
-        </div>
-        <div class="col-md-7 text-center slide-up">
-          <img class="w-50" :src="imageUrls.logoComputer" />
-        </div>
+        <BannerHome></BannerHome>
       </div>
     </div>
   </div>
-
-  <div style="background-color: #ffffff !important">
-    <img src="/img/icon/banner-sanpham.png" class="img-fluid py-4" alt="" />
-    <!-- giới thiệu -->
-    <div class="container p-0" id="gioiThieu">
+  <main>
+    <!-- Gioi thieu -->
+    <div class="container p-0 mt-5" id="gioiThieu">
       <div class="row">
         <div class="d-flex flex-column w-100 bg-white p-3">
-          <h3
-            class="mt-3 bg-title-trai"
-            style="color: #ffffff; padding-left: 20px; border-bottom: 1px #f37d34 solid"
-          >
-            Giới Thiệu
-          </h3>
           <span style="text-align: center; padding: 20px">
-            <!-- <a href="#"
-              ><img
-                src="/img/icon/quetnhanh-cam.png"
-                width="100px"
-                style="margin-bottom: 5px"
-                alt="logo"
-            /></a> -->
-            <strong>Quetnhanh</strong> là ứng dụng giúp bạn tạo và lưu trữ
-            <strong>danh thiếp kỹ thuật số</strong> của bạn với đầy đủ thông tin liên lạc,
-            mạng xã hội, website,... <strong>Chia sẻ</strong> danh thiếp của bạn một cách
-            nhanh chóng và dễ dàng qua việc <strong>chạm NFC</strong>,
-            <strong>quét QR</strong>, hay với một <strong>đường dẫn nickname</strong> yêu
-            thích của bạn. Mở rộng mạng lưới quan hệ, lưu và chia sẻ liên hệ của người
-            thân, trợ lý, người bảo hộ,... trên hồ sơ của bạn. Nhận lại tài sản bị thất
-            lạc bằng gắn vào đồ đạc, vật dụng, phương tiện,...</span
-          >
-        </div>
-      </div>
-    </div>
-
-    <div class="container p-0">
-      <div class="row bg-white">
-        <!-- <h3 class="m-auto mt-4">Sản Phẩm</h3> -->
-        <div class="col-12 mt-5" id="sanPham">
-          <h3
-            class="d-flex justify-content-end bg-title-phai"
-            style="color: #ffffff; padding-right: 20px; border-bottom: 1px #f37d34 solid"
-          >
-            Sản Phẩm
-          </h3>
-        </div>
-        <div class="col-12 col-md-6 p-4 mt-3">
-          <span style="text-align: center; padding: 20px">
-            Lựa chọn <strong>chất liệu cao cấp</strong>,
-            <strong>hình ảnh sắc nét</strong>, sản phẩm của
-            <strong>Quetnhanh</strong> mang đến sự bền bỉ vượt trội, đồng hành cùng bạn
-            trong thời gian dài. Chúng tôi tự hào cung cấp
-            <strong>đa dạng mẫu mã</strong>, đáp ứng mọi nhu cầu về
-            <strong>phong cách</strong>, <strong>tính cách</strong> và
-            <strong>sở thích</strong> của bạn. Dù bạn là cá nhân, tổ chức, nhãn hàng hay
-            hội nhóm, <strong>Quetnhanh</strong> luôn sẵn sàng đáp ứng mọi yêu cầu về sản
-            phẩm một cách chuyên nghiệp và tận tâm.</span
-          >
-        </div>
-        <div class="col-12 col-md-6 mt-3">
-          <img
-            src="/img/icon/mokup-phone.png"
-            style="width: 250px"
-            class="d-flex justify-content-center d-md-block m-auto"
-            alt=""
-          />
-        </div>
-
-        <div class="col-12 mt-5" id="giaoDien">
-          <h3
-            class="bg-title-trai"
-            style="
-              color: #ffffff;
-              padding-left: 20px;
-
-              border-bottom: 1px #f37d34 solid;
-            "
-          >
-            Giao Diện
-          </h3>
-        </div>
-
-        <div class="col-12 col-md-6 mt-3">
-          <img
-            src="/img/icon/tay-cam-DT.jpg"
-            style="width: 250px; /* border: 2px #f37d34 solid;  */ border-radius: 10px"
-            class="d-flex justify-content-center d-md-block m-auto"
-            alt=""
-          />
-        </div>
-        <div class="col-12 col-md-6 p-4 mt-3">
-          <span style="text-align: center; padding: 20px">
-            Hơn cả một danh thiếp điện tử, <strong>Quetnhanh</strong> biến hồ sơ của bạn
-            thành <strong>giao diện nổi bật</strong>, <strong>bắt mắt</strong> giúp tập
-            trung vào <strong>giá trị chia sẻ</strong>. Với thao tác chỉnh sửa
-            <strong>đơn giản</strong>,<strong> dễ dàng</strong>, bạn có thể nhanh chóng
-            cập nhật thông tin và tạo ấn tượng mạnh mẽ với người xem.</span
-          >
-          <br />
-          Giao diện hoàn toàn <strong>tương thích với đa số thiết</strong> bị điện thoại
-          thông minh, máy tính bảng đến máy tính.
-        </div>
-      </div>
-    </div>
-
-    <div class="container p-0" id="huongDan">
-      <h3
-        class="d-flex justify-content-end bg-title-huongdan"
-        style="
-          color: #ffffff;
-          padding-right: 20px;
-
-          border-bottom: 1px #f37d34 solid;
-        "
-      >
-        Hướng Dẫn Sử Dụng
-      </h3>
-      <div class="row bg-white p-4">
-        <div class="back-br">
-          <div class="d-flex justify-content-center flex-column">
-            <!-- <h3 class="m-auto">Hướng Dẫn Sử Dụng</h3> -->
-            <span class="m-auto p-3 mt-4" style="font-weight: 600">
-              Nhận sản phẩm của <strong>Quetnhanh</strong> và làm theo các bước
-              <strong>thật đơn giản</strong> với các bước bên dưới đây.</span
-            >
-          </div>
-          <div class="container mt-3">
-            <div class="row">
-              <div class="col-12 col-md-6">
-                <div class="d-flex flex-column p-3">
-                  <span class="p-1">
-                    <strong>1</strong>. Quét mã QR hoặc chạm vào vùng NFC trên điện thoại
-                    để dẫn đến trang đăng ký; nhập email, mật khẩu và kiểm tra kỹ sau đó
-                    nhấn tạo tài khoản</span
-                  >
-                </div>
-                <div class="d-flex flex-column p-3">
-                  <span class="p-1">
-                    <strong>2</strong>. Để thiết lập thông tin, hãy truy cập:<br /><a
-                      href="https://quetnhanh.vn/dangnhap"
-                      >https://quetnhanh.vn/dangnhap
-                    </a>
-                    <br />
-                    Nhập email và nhập mật khẩu sau đó nhấn đăng nhập</span
-                  >
-                </div>
-                <div class="d-flex flex-column p-3">
-                  <span class="p-1">
-                    <strong>3</strong>. Lựa chọn mục <strong>"Sửa thông tin"</strong>,
-                    <strong>"Danh thiếp người thân"</strong>,
-                    <strong>"Biểu tượng mạng xã hội"</strong>,
-                    <strong>"Chia sẻ liên kết"</strong> tương ứng để thêm hoặc thay đổi
-                    với mục đích của bạn.
-                  </span>
-                </div>
+            <div>
+              <div class="slide-top">
+                <h2>
+                  Website chuyên nghiệp, chuẩn UX/UI, tối ưu SEO,
+                  <h2>giúp doanh nghiệp của bạn tỏa sáng trên mọi nền tảng!</h2>
+                </h2>
               </div>
-              <div class="col-12 col-md-6 m-auto">
-                <div class="d-flex justify-content-between">
-                  <img
-                    src="/img/icon/hdsd-1.png"
-                    style="width: 100px"
-                    class="d-md-block m-auto"
-                    alt=""
-                  />
-                  <img
-                    src="/img/icon/hdsd-2.png"
-                    style="width: 100px"
-                    class="d-md-block m-auto"
-                    alt=""
-                  />
-                  <img
-                    src="/img/icon/hdsd-3.png"
-                    style="width: 100px"
-                    class="d-md-block m-auto"
-                    alt=""
-                  />
-                </div>
+              <div class="mt-4" style="line-height: 2;">
+                <strong>DVCorp</strong> là đơn vị chuyên thiết kế website chuyên nghiệp,
+                mang đến giải pháp tối ưu cho doanh nghiệp, cá nhân và tổ chức muốn khẳng
+                định thương hiệu trên nền tảng số. Chúng tôi không chỉ tạo ra những
+                website đẹp mắt, chuẩn UX/UI mà còn đảm bảo tối ưu SEO, khả năng hiển thị
+                hoàn hảo trên mọi thiết bị. DVCorp cam kết mang đến sản phẩm chất lượng,
+                giúp bạn tiếp cận khách hàng hiệu quả và nâng tầm thương hiệu trong thời
+                đại số.
               </div>
             </div>
+          </span>
+        </div>
+      </div>
+    </div>
+<DanhMucHome></DanhMucHome>
+    <div class="container p-0 mt-5" id="gioiThieu">
+      <div class="row">
+        <!-- Ẩn ảnh ban đầu, chỉ hiển thị khi WOW.js kích hoạt -->
+        <div class="col-lg-6 wow fadeInLeft" data-wow-duration="2s" data-wow-delay="0.3s">
+          <img class="img-boder-home-1 w-100" :src="imageUrls.bgHome1" />
+        </div>
+
+        <!-- Ẩn text ban đầu, chỉ hiển thị khi WOW.js kích hoạt -->
+        <div
+          class="col-lg-6 wow fadeInRight"
+          data-wow-duration="3s"
+          data-wow-delay="0.5s"
+        >
+          <div class="d-flex flex-column w-100 bg-white p-3">
+            <span style="text-align: start; padding: 20px">
+              <div>
+                <div class="slide-top">
+                  <h5 style="color: #2291a3">VỀ CHÚNG TÔI</h5>
+                </div>
+                <div class="mt-4" style="line-height: 2;">
+                  Tại <strong style="color: #2291a3">DVCorp</strong>, chúng tôi cung cấp đa dạng mẫu
+                  website chuyên nghiệp, phù hợp với mọi lĩnh vực từ  doanh nghiệp, bán
+                  hàng đến profie cá nhân. Mỗi mẫu đều được thiết kế chuẩn UX/UI, tối
+                  ưu SEO và dễ dàng tùy chỉnh. Khám phá ngay để tìm ra giao diện hoàn hảo
+                  cho bạn!
+                </div>
+              </div>
+            </span>
+            <div class="row mt-5 pt-4">
+                  <div class="col-lg-4 col-sm-4">
+                    <div class="skill-item first-skill-item wow fadeIn" data-wow-duration="1s" data-wow-delay="0s">
+                      <div class="progress" data-percentage="100">
+                        <span class="progress-left">
+                          <span class="progress-bar"></span>
+                        </span>
+                        <span class="progress-right">
+                          <span class="progress-bar"></span>
+                        </span>
+                        <div class="progress-value">
+                          <div style="font-size: 18px;">
+                           <span style="color: black ; font-weight: 600;" >Thiết kế</span><br/>
+                            <span>Chuyên nghiệp</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-sm-4">
+                    <div class="skill-item second-skill-item wow fadeIn" data-wow-duration="1s" data-wow-delay="0s">
+                      <div class="progress" data-percentage="100">
+                        <span class="progress-left">
+                          <span class="progress-bar"></span>
+                        </span>
+                        <span class="progress-right">
+                          <span class="progress-bar"></span>
+                        </span>
+                        <div class="progress-value">
+                          <div>
+                            <span style="color: black ; font-weight: 600;" >Ưu đãi</span><br/>
+                            <span>Ngập tràn</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-sm-4">
+                    <div class="skill-item third-skill-item wow fadeIn" data-wow-duration="1s" data-wow-delay="0s">
+                      <div class="progress" data-percentage="100">
+                        <span class="progress-left">
+                          <span class="progress-bar"></span>
+                        </span>
+                        <span class="progress-right">
+                          <span class="progress-bar"></span>
+                        </span>
+                        <div class="progress-value">
+                          <div>
+                            <span style="color: black ; font-weight: 600;">100%</span><br/>
+                            <span>Bảo hành</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div> 
           </div>
         </div>
       </div>
     </div>
-    <!-- <hr class="m-auto mt-4" style="border-bottom: 1px #f37d34 solid; width: 300px; padding: 20px" /> -->
-    <div class="col-12 p-4" id="lienHe">
-      <a
-        href="https://docs.google.com/forms/d/1BZ98DRi5Swkhz_-j9s06H1mOsTxfoYBmgw_RY7qnayU/viewform?edit_requested=true"
-        target="_blank"
-      >
-        <button class="btn-lienhe d-flex m-auto w-50 justify-content-center p-4">
-          <strong style="font-size: 26px">Nhận tư vấn</strong>
-        </button>
-      </a>
-    </div>
-  </div>
-  <div class="modal" v-if="showLoading">
-    <div class="box-loadding box m-auto"></div>
-  </div>
+
+  </main>
 </template>
 
 <script>
+import { ref, onMounted, onUnmounted } from "vue";
+import WOW from "wowjs";
 import { imageUrls } from "@/assets/js/imgUrl";
+import BannerHome from "./bannerHome/bannerHome.vue";
+import DanhMucHome from "./bannerHome/danhMucHome.vue";
 export default {
+  components: {
+    BannerHome,DanhMucHome
+  },
   setup() {
-    document.title = "Quét nhanh - danh thiếp điện tử - nhanh gọn dễ dàng - quetnhanh.vn";
+    const isNavActive = ref(false);
+    const isScrolled = ref(false);
+    const menuItems = [
+      { text: "Home", href: "#home" },
+      { text: "About", href: "#about" },
+      { text: "Services", href: "#services" },
+      { text: "Features", href: "#features" },
+      { text: "Blog", href: "#blog" },
+      { text: "Contact Us", href: "#" },
+    ];
+
+    const toggleNavbar = () => {
+      isNavActive.value = !isNavActive.value;
+    };
+
+    const handleScroll = () => {
+      isScrolled.value = window.scrollY >= 400;
+    };
+
+    onMounted(() => {
+      window.addEventListener("scroll", handleScroll);
+      new WOW.WOW().init();
+    });
+
+    onUnmounted(() => {
+      window.removeEventListener("scroll", handleScroll);
+    });
+
+    return {
+      isNavActive,
+      isScrolled,
+      menuItems,
+      toggleNavbar,
+    };
   },
   data() {
     return {
@@ -301,9 +244,9 @@ export default {
   },
   mounted() {},
   methods: {
-    toggleNavbar() {
-      this.isNavbarOpen = !this.isNavbarOpen;
-    },
+    // toggleNavbar() {
+    //   this.isNavbarOpen = !this.isNavbarOpen;
+    // },
     scrollToSection(sectionId) {
       const section = document.getElementById(sectionId);
       if (section) {
@@ -383,7 +326,7 @@ export default {
   text-align: center;
   background-color: rgba(0, 18, 255, 0.7);
   color: #fff;
-  width: 200px !important;
+  width: auto;
 }
 
 @media (max-width: 576px) {
