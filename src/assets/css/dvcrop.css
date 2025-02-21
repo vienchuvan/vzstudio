@@ -12,6 +12,12 @@
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
 }
+
+.wrap{
+  width: 100%;
+  max-width: 1395px;
+  margin: 0 auto;
+}
 .header-area {
     background-color: transparent;
     border-bottom: 1px solid rgba(42, 42, 42, 0.2);
@@ -367,9 +373,65 @@ button:not(:hover) span {
     transition: 0.3s;
   }
   
-  .img-urun-container a:hover {
+ 
+
+  .emag-item {  
+    position: relative;
+    width: 315px;
+    height: auto;
+    margin: 20px;
+    overflow: hidden; 
     background: #fff;
-    color: #000;
+    border-radius: 10px;
+    border:1px solid #ccc;
+    font-size: 18px;
+    font-family: 'Arial';
+    box-shadow: 5px 5px 15px -2px #666;
+   }
+  
+  .emag-triangle {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 55px solid #ea6c6c;
+    border-right: 55px solid transparent;
+  }
+  
+  .emag-triangle > span { 
+    position: absolute; 
+    top: -45px;
+    left: 4px;
+    transform: rotate(-45deg);
+    font-size: 16px;
+    color: white; 
+  }
+  
+  .emag-item-body { 
+    width: 270px;
+    margin: 12px auto; 
+    text-align: center; 
+  }
+  
+  
+  .emag-item-body > img { 
+    width: 100px; 
+    margin-top: 20px;
+    border-radius: 50px;
+    transition: all .2s ease-in-out; 
+  }
+ 
+  .emag-item-price { 
+    color: #ea6c6c;
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .emag-item-title { 
+    color: #474747;
+    font-size: 14px;
+    /* font-weight: bold; */
+    margin-top: 5px;
   }
   
   
