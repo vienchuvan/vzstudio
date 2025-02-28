@@ -1,0 +1,51 @@
+[
+    {
+      "name": "Gói Cơ Bản",
+      "price": "Từ 2.000.000 VNĐ",
+      "features": [
+        "Website giới thiệu đơn giản (doanh nghiệp, cá nhân)",
+        "Giao diện chuẩn UX/UI, tối ưu hiển thị trên mọi thiết bị",
+        "Tích hợp form liên hệ, Google Map",
+        "Tốc độ tải trang nhanh, chuẩn SEO cơ bản",
+        "Hỗ trợ kỹ thuật 24/7",
+        "Hỗ trợ bảo trì vĩnh viễn"
+      ],
+      "buttonText": "Tư vấn",
+      "popular": false
+    },
+    {
+      "name": "Gói Nâng Cao",
+      "price": "Từ 5.000.000 VNĐ",
+      "features": [
+        "Thiết kế website tùy chỉnh theo thương hiệu",
+        "Giao diện chuẩn UX/UI, tối ưu hiển thị trên mọi thiết bị",
+        "Tích hợp form liên hệ, Google Map",
+        "Tích hợp blog, tin tức, danh mục sản phẩm/dịch vụ",
+        "Tốc độ tải trang nhanh, chuẩn SEO cơ bản",
+        "Hỗ trợ đa ngôn ngữ, live chat, chatbot",
+        "Hỗ trợ kỹ thuật 24/7",
+        "Hỗ trợ bảo trì vĩnh viễn"
+      ],
+      "buttonText": "Tư vấn",
+      "popular": false
+    },
+    {
+      "name": "Gói Cao Cấp",
+      "price": "Từ 10.000.000 VNĐ",
+      "features": [
+        "Website chuyên nghiệp theo yêu cầu, thiết kế độc quyền",
+        "Giao diện chuẩn UX/UI, tối ưu hiển thị trên mọi thiết bị",
+        "Tích hợp form liên hệ, Google Map",
+        "Tích hợp blog, tin tức, danh mục sản phẩm/dịch vụ",
+        "Tốc độ tải trang nhanh, chuẩn SEO cơ bản",
+        "Hỗ trợ đa ngôn ngữ, live chat, chatbot",
+        "Hosting miễn phí 1 năm",
+        "Bảo mật SSL năm đầu",
+        "Hỗ trợ kỹ thuật 24/7",
+        "Hỗ trợ bảo trì vĩnh viễn"
+      ],
+      "buttonText": "Tư vấn",
+      "popular": true
+    }
+  ]
+  

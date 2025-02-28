@@ -31,7 +31,7 @@
           </li>
 
           <li class="navbar-item">
-            <a href="#about" class="navbar-link" data-navbar-link>Trang chủ</a>
+            <a href="#about" class="navbar-link" data-navbar-link>Danh mục</a>
           </li>
 
           <li class="navbar-item">
