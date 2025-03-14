@@ -1,5 +1,5 @@
 export const imageUrls = {
-    logoCty: "img/logo/logodv.png",
+    logoCty: "img/logo/logoSnapWeb.png",
     logoComputer: "img/logo/icon_bg_logo.png",
 
 textLogo : "img/logo/dvcrop2.png",

@@ -101,7 +101,9 @@
     <BangGiaHome></BangGiaHome>
     <QuyTrinhHome></QuyTrinhHome>
     <VeChungToi></VeChungToi>
-   
+
+    <MainSlideBaiViet> </MainSlideBaiViet>
+   <FooterHome> </FooterHome>
   </main>
   <ContactHome></ContactHome>
 </template>
@@ -116,6 +118,8 @@ import QuyTrinhHome from "./HomeVue/quyTrinhHome.vue";
 import ContactHome from "./HomeVue/ContactHome.vue";
 import VeChungToi from "./HomeVue/veChungToi.vue";
 import BangGiaHome from "./HomeVue/bangGiaHome.vue";
+import FooterHome from "./Footer-home.vue";
+import MainSlideBaiViet from "./HomeVue/MainSlideBaiViet.vue";
 
 export default {
   components: {
@@ -124,7 +128,7 @@ export default {
     QuyTrinhHome,
     ContactHome,
     VeChungToi,
-    BangGiaHome
+    BangGiaHome,FooterHome,MainSlideBaiViet
   },
   setup() {
     const isNavActive = ref(false);

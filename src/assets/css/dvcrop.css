@@ -44,10 +44,12 @@
   }
   
   .header-dv-crop.active {
-    background: rgba(255, 255, 255, 0.9);
+    background: #343a4075;
     backdrop-filter: blur(10px);
   }
-  
+  .header-dv-crop .active .navbar-link {
+  color: #383f51;
+  }
   .container-dv-crop {
     display: flex;
     justify-content: space-between;
@@ -434,4 +436,34 @@ button:not(:hover) span {
     margin-top: 5px;
   }
   
-  
+  .footer-content:before{
+    position: absolute;
+    content: '';
+    background: url(../image/bg/bg3.jpg);
+    width: 744px;
+    height: 365px;
+    top: 50px;
+    right: 0px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    animation-name: float-bob;
+    animation-duration: 30s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    -webkit-animation-name: float-bob;
+    -webkit-animation-duration: 30s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-name: float-bob;
+    -moz-animation-duration: 30s;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+    -ms-animation-name: float-bob;
+    -ms-animation-duration: 30s;
+    -ms-animation-iteration-count: infinite;
+    -ms-animation-timing-function: linear;
+    -o-animation-name: float-bob;
+    -o-animation-duration: 30s;
+    -o-animation-iteration-count: infinite;
+    -o-animation-timing-function: linear;
+  }
