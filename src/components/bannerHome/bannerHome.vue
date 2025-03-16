@@ -19,7 +19,7 @@
     </div>
   </div>
   <div class="col-md-7 text-center slide-up mt-5">
-    <!-- <img class="w-50" :src="imageUrls.bgBanner" /> -->
+    <img class="w-50" :src="imageUrls.bgHome2" />
   </div>
   <div class="d-flex w-100 mt-5">
     <div class="container pt-5">

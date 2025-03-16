@@ -1,7 +1,7 @@
 <template>
-  <div class="col-md-5 mt-5" style="color: white; font-family: math; font-weight: 600">
+  <div class="col-md-6 mt-5" style="color: white; font-family: math; font-weight: 600">
     <div class="d-flex flex-column">
-      <img class="slide-top" :src="imageUrls.textLogo" style="width: 250px" />
+      <img class="slide-top " :src="imageUrls.textLogo" style="width: 250px" />
       <h1 class="d-flex justify-content-end slide-in" style="color: white">
         Kiến tạo website, nâng tầm thương hiệu!
       </h1>
@@ -18,10 +18,10 @@
       </div>
     </div>
   </div>
-  <div class="col-md-7 text-center slide-up mt-5">
-    <!-- <img class="w-50" :src="imageUrls.bgBanner" /> -->
+  <div class="col-md-6 text-center slide-up mt-5">
+    <img class="w-75 floating-image" :src="imageUrls.bgHome2" />
   </div>
-  <div class="d-flex w-100 mt-5">
+  <!-- <div class="d-flex w-100 mt-5">
     <div class="container pt-5">
       <div class="row pt-5">
         <div class="col-12 col-md-3">
@@ -66,7 +66,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </template>
 <script>
 import { imageUrls } from "@/assets/js/imgUrl";

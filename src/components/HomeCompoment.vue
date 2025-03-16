@@ -73,7 +73,7 @@
     <!-- Gioi thieu -->
     <div class="container p-0 mt-5" id="gioiThieu">
       <div class="row">
-        <div class="d-flex flex-column w-100 bg-white p-3">
+        <div class="d-flex flex-column w-100 bg-white p-3" style="border-radius: 50px;">
           <span style="text-align: center; padding: 20px">
             <div>
               <div class="slide-top">
@@ -204,6 +204,9 @@ export default {
 </script>
 
 <style>
+
+
+
 .bg-title-trai {
   background: linear-gradient(28deg, #f37d34 25%, #fff 25%);
 }
