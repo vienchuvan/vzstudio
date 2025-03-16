@@ -16,10 +16,10 @@
         </a>
       </div>
       <div class="excerpt">
-        <h6 class="heading" style="margin-top: 10px; font-family: auto; font-size: 18px">
+        <h6 class="heading" style="margin-top: 10px; font-family: auto; font-size: 18px; color: white;">
          {{ decodeBase64(article.title) }}
         </h6>
-        <p style="max-height: 200px; overflow: hidden">
+        <p style="max-height: 200px; overflow: hidden; color: white;">
           {{ decodeBase64(article.shortContent) }}
         </p>
         <footer>

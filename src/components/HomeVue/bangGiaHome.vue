@@ -1,6 +1,6 @@
 <template>
   <div class="wrap mt-5">
-    <h2>
+    <h2 style="color: white;">
       Với các sự lựa chọn <span style="color: #57bddb">mức giá Ưu đãi</span> <br />
       cho những sản phẩm bạn mong muốn
     </h2>
@@ -20,7 +20,7 @@
           </div>
           <div class="plan-price">
             <h2>
-              <span>{{ plan.price }}</span>
+              <span style="color: white;">{{ plan.price }}</span>
             </h2>
           </div>
           <ul class="plan-features list-unstyled">
@@ -28,9 +28,14 @@
               <i class="fa fa-check"></i> {{ feature }}
             </li>
           </ul>
-          <div class="plan-link">
+          <!-- <div class="plan-link">
             <a class="btn btn-bordered" href="#">Tư vấn</a>
-          </div>
+          </div> -->
+          <div class="plan-link d-flex justify-content-center"><button style="    margin-bottom: 5px;
+    margin-top: 5px;">
+          <span>Tư vấn </span>
+        </button></div>
+          
         </div>
       </div>
     </div>

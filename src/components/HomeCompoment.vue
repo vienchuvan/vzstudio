@@ -62,9 +62,9 @@
       </button>
     </div>
   </header>
-  <div class="d-flex flex-column main-banner">
+  <div class="d-flex flex-column">
     <div class="d-flex flex-column p-0 mt-5">
-      <div class="row p-5 align-items-center banner-bg mt-5">
+      <div class="row p-5 align-items-center  mt-5">
         <BannerHome></BannerHome>
       </div>
     </div>
@@ -83,11 +83,11 @@
                 </h2>
               </div>
               <div class="mt-4" style="line-height: 2">
-                <strong>DVCorp</strong> là đơn vị chuyên thiết kế website chuyên nghiệp,
+                <strong>SnapWeb</strong> là đơn vị chuyên thiết kế website chuyên nghiệp,
                 mang đến giải pháp tối ưu cho doanh nghiệp, cá nhân và tổ chức muốn khẳng
                 định thương hiệu trên nền tảng số. Chúng tôi không chỉ tạo ra những
                 website đẹp mắt, chuẩn UX/UI mà còn đảm bảo tối ưu SEO, khả năng hiển thị
-                hoàn hảo trên mọi thiết bị. DVCorp cam kết mang đến sản phẩm chất lượng,
+                hoàn hảo trên mọi thiết bị. SnapWeb cam kết mang đến sản phẩm chất lượng,
                 giúp bạn tiếp cận khách hàng hiệu quả và nâng tầm thương hiệu trong thời
                 đại số.
               </div>

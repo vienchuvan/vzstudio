@@ -17,6 +17,11 @@
   width: 100%;
   max-width: 1395px;
   margin: 0 auto;
+  color: white;
+}
+.wrap .h2{
+
+  color: white;
 }
 .header-area {
     background-color: transparent;

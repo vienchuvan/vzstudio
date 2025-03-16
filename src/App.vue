@@ -1,19 +1,10 @@
 <template>
   <div id="app">
-    <HomeCompoment msg="Welcome to Your Vue.js App"/>
+  <RouterView></RouterView>
   </div>
 </template>
 
-<script>
-import HomeCompoment from './components/HomeCompoment.vue';
 
-export default {
-  name: 'App',
-  components: {
-    HomeCompoment
-  }
-}
-</script>
 
 <style>
 /* Định dạng chung */

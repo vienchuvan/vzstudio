@@ -1,7 +1,7 @@
 <template>
   <div class="col-md-6 mt-5" style="color: white; font-family: math; font-weight: 600">
     <div class="d-flex flex-column">
-      <img class="slide-top " :src="imageUrls.textLogo" style="width: 250px" />
+      <img class="slide-top" :src="imageUrls.textLogo" style="width: 250px; margin-left: 10.5rem;" />
       <h1 class="d-flex justify-content-end slide-in" style="color: white">
         Kiến tạo website, nâng tầm thương hiệu!
       </h1>
@@ -19,7 +19,7 @@
     </div>
   </div>
   <div class="col-md-6 text-center slide-up mt-5">
-    <img class="w-75 floating-image" :src="imageUrls.bgHome2" />
+    <img class="w-50 floating-image" :src="imageUrls.bgHome2" />
   </div>
   <!-- <div class="d-flex w-100 mt-5">
     <div class="container pt-5">
