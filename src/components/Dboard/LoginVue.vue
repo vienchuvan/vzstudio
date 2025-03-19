@@ -41,20 +41,56 @@
       </div>
     </div>
   </div>
-  <div class="modal" id="modal-loading" data-backdrop="static">
+  <div class="modal" id="modal-loading" data-backdrop="static" v-if="showLoading">
     <div class="modal-dialog modal-sm">
-   
-      <div class="loading-spinner mb-2"></div></div>
-    
+      <div class="loading-spinner mb-2"></div>
+    </div>
+  </div>
+
+  <div id="snackbar" v-if="showModal">
+    <div class="d-flex flex-column">
+      <div class="d-flex justify-content-center">
+        <div
+          class="modal-content-thongbao fadeInDown"
+          v-if="statusCode == 200 || statusCode == 0"
+        >
+          <div class="modal-header f-flex flex-column m-auto p-4" style="color: green">
+            <h5 class="modal-title fs-5 m-auto" id="staticBackdropLabel">
+              <img
+                v-if="statusCode == 200"
+                style="width: 25px"
+                src="/img/icon/tickXanh.png"
+              />
+              <img
+                v-if="statusCode == 0"
+                style="width: 50px"
+                src="/img/icon/icon-xoa.png"
+              />
+            </h5>
+            <span v-if="statusCode == 200"> Đăng nhập thành công !</span>
+            <span v-if="statusCode == 0" style="color: red"
+              >Sai tài khoản hoặc mật khẩu !</span
+            >
+          </div>
+        </div>
+        <div class="modal-content-thongbao" v-else>
+          <div class="modal-header f-flex flex-column m-auto p-4" style="color: red">
+            <h1 class="modal-title fs-5 m-auto" id="staticBackdropLabel">
+              <img style="width: 50px" src="/img/icon/icon-xoa.png" />
+            </h1>
+            <span> Hệ thống đang bảo trì vui lòng thử lại sau !</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
-<script lang="js">
-
-</script>
+<script lang="js"></script>
 
 <script>
 import { postLogin } from "@/assets/js/snapService";
 import { imageUrls } from "@/assets/js/imgUrl";
+import { useAuthStore } from "@/assets/js/dboard/auth.js";
 
 export default {
   data() {
@@ -62,12 +98,44 @@ export default {
       imgUrl: imageUrls,
       user: "",
       pass: "",
+      showModal: false,
+      showLoading: false,
+      statusCode: "",
     };
   },
   methods: {
+    showLoadding() {
+      this.showLoading = true;
+      setTimeout(() => {
+        this.hideLoading();
+      }, 500);
+    },
+    hideLoading() {
+      this.showLoading = false;
+    },
+    showModalAct(time = 2000) {
+      this.showModal = true;
+      setTimeout(() => {
+        this.showModal = false;
+      }, time);
+    },
     async onClickLogin() {
       try {
+        const userStore = useAuthStore();
+        console.log("userStore:", userStore);
         const resLogin = await postLogin(this.user, this.pass);
+        this.statusCode = resLogin.status;
+        userStore.login(resLogin.user);
+        this.hideLoading();
+        if (this.statusCode == 200) {
+          this.showModalAct(1500);
+          setTimeout(() => {
+            this.$router.push("/dashboard/quantri");
+          }, 1500);
+        } else {
+          this.showModalAct(1500);
+        }
+
         console.log(resLogin);
       } catch (err) {
         console.log(err);
@@ -78,7 +146,21 @@ export default {
 </script>
 
 <style lang="css" scoped>
-
+.modal-content-thongbao {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  pointer-events: auto;
+  background-color: #fff;
+  background-clip: padding-box;
+  border-radius: 0.3rem;
+  outline: 0;
+  border-radius: 30px;
+  bottom: 0;
+}
+.modal {
+  padding-top: 400px;
+}
 .loading-spinner {
   width: 75px;
   height: 75px;

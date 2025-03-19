@@ -16,6 +16,6 @@ export const postLogin = (user, pass) => {
     
     )
     .then((res) => {
-      return res;
+      return res.data;
     });
 };

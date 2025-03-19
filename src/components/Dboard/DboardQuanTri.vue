@@ -2,7 +2,7 @@
   <section id="sidebar">
     <a href="#" class="brand">
       <i class="bx bxs-smile bx-lg"></i>
-      <span class="text">AdminHub</span>
+      <span >ADMIN</span>
     </a>
     <ul class="side-menu top">
       <li class="active">
@@ -14,25 +14,26 @@
       <li>
         <a href="#">
           <i class="bx bxs-shopping-bag-alt bx-sm"></i>
-          <span class="text">My Store</span>
+          <span class="text">Danh mục</span>
         </a>
       </li>
       <li>
         <a href="#">
           <i class="bx bxs-doughnut-chart bx-sm"></i>
-          <span class="text">Analytics</span>
+          <span class="text">Bài viết</span>
         </a>
       </li>
+      
       <li>
         <a href="#">
           <i class="bx bxs-message-dots bx-sm"></i>
-          <span class="text">Message</span>
+          <span class="text">Đẩy ảnh</span>
         </a>
       </li>
       <li>
         <a href="#">
           <i class="bx bxs-group bx-sm"></i>
-          <span class="text">Team</span>
+          <span class="text">Chỉnh sửa</span>
         </a>
       </li>
     </ul>
@@ -67,15 +68,15 @@
           </button>
         </div>
       </form>
-      <input type="checkbox" class="checkbox" id="switch-mode" hidden />
+      <!-- <input type="checkbox" class="checkbox" id="switch-mode" hidden />
       <label class="swith-lm" for="switch-mode">
         <i class="bx bxs-moon"></i>
         <i class="bx bx-sun"></i>
         <div class="ball"></div>
-      </label>
+      </label> -->
 
       <!-- Notification Bell -->
-      <a href="#" class="notification" id="notificationIcon">
+      <!-- <a href="#" class="notification" id="notificationIcon">
         <i class="bx bxs-bell bx-tada-hover"></i>
         <span class="num">8</span>
       </a>
@@ -87,11 +88,14 @@
           <li>Update available for your app</li>
           <li>Reminder: Meeting at 3PM</li>
         </ul>
-      </div>
+      </div> -->
 
       <!-- Profile Menu -->
       <a href="#" class="profile" id="profileIcon">
+     
         <img src="https://placehold.co/600x400/png" alt="Profile" />
+        <span >{{ userName }}</span>
+       
       </a>
       <div class="profile-menu" id="profileMenu">
         <ul>
@@ -105,45 +109,26 @@
 
     <!-- MAIN -->
     <main>
-      <div class="head-title">
-        <div class="left">
-          <h1>Dashboard</h1>
-          <ul class="breadcrumb">
-            <li>
-              <a href="#">Dashboard</a>
-            </li>
-            <li><i class="bx bx-chevron-right"></i></li>
-            <li>
-              <a class="active" href="#">Home</a>
-            </li>
-          </ul>
-        </div>
-        <a href="#" class="btn-download">
-          <i class="bx bxs-cloud-download bx-fade-down-hover"></i>
-          <span class="text">Get PDF</span>
-        </a>
-      </div>
+   
 
       <ul class="box-info">
         <li>
           <i class="bx bxs-calendar-check"></i>
           <span class="text">
-            <h3>1020</h3>
-            <p>New Order</p>
+            <h3>Danh mục</h3>
           </span>
         </li>
         <li>
           <i class="bx bxs-group"></i>
           <span class="text">
-            <h3>2834</h3>
-            <p>Visitors</p>
+            <h3>Bài viết</h3>
           </span>
         </li>
         <li>
           <i class="bx bxs-dollar-circle"></i>
           <span class="text">
-            <h3>N$2543.00</h3>
-            <p>Total Sales</p>
+            <h3>Thống kê</h3>
+            <p></p>
           </span>
         </li>
       </ul>
@@ -242,3 +227,25 @@
   </section>
   <!-- CONTENT -->
 </template>
+
+<script>
+import { useAuthStore } from "@/assets/js/dboard/auth";
+
+export default {
+  data() {
+    return {
+      authStore: "",
+      userName: "",
+    };
+  },
+  mounted() {
+    this.getUser();
+  },
+  methods: {
+    getUser() {
+      this.authStore = useAuthStore();
+      this.userName = "Xin chào " + this.authStore.user.user + " !";
+    },
+  },
+};
+</script>

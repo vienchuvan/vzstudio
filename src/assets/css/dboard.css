@@ -86,7 +86,7 @@ body {
 	box-sizing: content-box;
 }
 #sidebar .brand .bx {
-	min-width: 60px;
+	min-width: 45px;
 	display: flex;
 	justify-content: center;
 }
