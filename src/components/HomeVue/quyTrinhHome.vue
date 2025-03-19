@@ -4,8 +4,8 @@
     <div class="w-100 mt-3" style="border-bottom: 1px dotted"></div>
     <div class="container-fluid mt-5">
       <div class="row">
-        <div class="col-12 col-md-4 wow fadeInDown floating-image" data-wow-delay="0.3s">
-          <div class="emag-item">
+        <div class="col-12 col-md-4 wow fadeInDown " data-wow-delay="0.3s">
+          <div class="emag-item ">
           
             <div class="emag-item-body">
               <img
@@ -20,8 +20,8 @@
             </div>
           </div>
         </div>
-        <div class="col-12 col-md-4 wow fadeInDown floating-image" data-wow-delay="0.5s">
-          <div class="emag-item">
+        <div class="col-12 col-md-4 wow fadeInDown " data-wow-delay="0.5s">
+          <div class="emag-item ">
            
             <div class="emag-item-body">
               <img
@@ -34,8 +34,8 @@
             </div>
           </div>
         </div>
-        <div class="col-12 col-md-4 wow fadeInDown floating-image" data-wow-delay="0.8s">
-          <div class="emag-item">
+        <div class="col-12 col-md-4 wow fadeInDown " data-wow-delay="0.8s">
+          <div class="emag-item ">
            
             <div class="emag-item-body ">
               <img
@@ -50,8 +50,8 @@
         </div>
       </div>
       <div class="row mt-5">
-        <div class="col-12 col-md-4 wow fadeInUp floating-image" data-wow-delay="0.8s">
-          <div class="emag-item">
+        <div class="col-12 col-md-4 wow fadeInUp " data-wow-delay="0.8s">
+          <div class="emag-item ">
             
             <div class="emag-item-body">
               <img
@@ -65,7 +65,7 @@
             </div>
           </div>
         </div>
-        <div class="col-12 col-md-4 wow fadeInUp floating-image" data-wow-delay="0.5s">
+        <div class="col-12 col-md-4 wow fadeInUp " data-wow-delay="0.5s">
           <div class="emag-item">
            
             <div class="emag-item-body">
@@ -79,7 +79,7 @@
             </div>
           </div>
         </div>
-        <div class="col-12 col-md-4 wow fadeInUp floating-image" data-wow-delay="0.3s">
+        <div class="col-12 col-md-4 wow fadeInUp " data-wow-delay="0.3s">
 
           <div class="emag-item">
         

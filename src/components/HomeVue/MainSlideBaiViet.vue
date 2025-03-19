@@ -110,7 +110,7 @@ import { decodeBase64 } from "@/assets/js/SnapWeb";
    async fetchData() {
       try {
         // Thực hiện POST request
-        const response = await axios.get("http://localhost:3000/api/quantri/services/getBaiViet");
+        const response = await axios.get("http://103.200.23.120:3000/api/quantri/services/getBaiViet");
         this.articles =  response.data.response
         console.log("response ", response.data.response);
         

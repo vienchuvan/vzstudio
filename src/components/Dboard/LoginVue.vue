@@ -36,6 +36,9 @@
     </div>
   </div>
 </template>
+<script lang="js">
+
+</script>
 
 <style lang="css" scoped>
 .login-box {

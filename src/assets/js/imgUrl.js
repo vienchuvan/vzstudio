@@ -15,6 +15,7 @@ iconGia: "img/icon/iconMonney.png",
     bgBanner: "img/bg/slider-left-dec.png",
     bgHome1: "img/bg/bg-4.avif",
     bgHome2: "img/bg/logoBannerVien.png",
+    bgHome3: "img/bg/iconNhanVat2.png",
 
     // img san pham 
 
