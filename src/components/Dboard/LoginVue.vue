@@ -4,20 +4,20 @@
       <div class="col-lg-3 col-md-2"></div>
       <div class="col-lg-6 col-md-8 login-box">
         <div class="col-lg-12 login-key">
-          <i class="fa fa-key" aria-hidden="true"></i>
+          <img class="w-25" :src="imgUrl.logoCty" />
         </div>
-        <div class="col-lg-12 login-title">ADMIN </div>
+        <div class="col-lg-12 login-title mt-5">LOGIN</div>
 
         <div class="col-lg-12 login-form">
           <div class="col-lg-12 login-form">
             <form>
               <div class="form-group">
                 <label class="form-control-label">Tài khoản</label>
-                <input type="text" class="form-control" />
+                <input type="text" class="form-control" v-model="user" />
               </div>
               <div class="form-group">
                 <label class="form-control-label">Mật khẩu</label>
-                <input type="password" class="form-control" i />
+                <input type="password" class="form-control" v-model="pass" />
               </div>
 
               <div class="col-lg-12 loginbttm">
@@ -25,7 +25,13 @@
                   <!-- Error Message -->
                 </div>
                 <div class="col-lg-12 login-btm login-button">
-                  <button type="submit" class="btn btn-outline-primary">Đăng nhập</button>
+                  <button
+                    type="button"
+                    class="btn btn-outline-primary"
+                    @click="onClickLogin()"
+                  >
+                    Đăng nhập
+                  </button>
                 </div>
               </div>
             </form>
@@ -35,18 +41,70 @@
       </div>
     </div>
   </div>
+  <div class="modal" id="modal-loading" data-backdrop="static">
+    <div class="modal-dialog modal-sm">
+   
+      <div class="loading-spinner mb-2"></div></div>
+    
+  </div>
 </template>
 <script lang="js">
 
 </script>
 
+<script>
+import { postLogin } from "@/assets/js/snapService";
+import { imageUrls } from "@/assets/js/imgUrl";
+
+export default {
+  data() {
+    return {
+      imgUrl: imageUrls,
+      user: "",
+      pass: "",
+    };
+  },
+  methods: {
+    async onClickLogin() {
+      try {
+        const resLogin = await postLogin(this.user, this.pass);
+        console.log(resLogin);
+      } catch (err) {
+        console.log(err);
+      }
+    },
+  },
+};
+</script>
+
 <style lang="css" scoped>
+
+.loading-spinner {
+  width: 75px;
+  height: 75px;
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 50%;
+  border-top-color: #0001;
+  display: inline-block;
+  animation: loadingspinner 0.7s linear infinite;
+  margin: auto;
+}
+@keyframes loadingspinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .login-box {
   margin-top: 75px;
   height: auto;
   background: #1a2226;
   text-align: center;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  border-radius: 10px;
 }
 
 .login-key {

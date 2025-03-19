@@ -8,7 +8,7 @@ import './assets/css/dvcrop.css'
 import './assets/css/styles.css' 
 import './assets/css/animation.css' 
 // import './assets/js/owl-carousel.js'
-// import './assets/js/animation.js'
+import './assets/css/dboard.css'
 // import './assets/js/imagesloaded.js'
 // import './assets/js/custom.js'
 
