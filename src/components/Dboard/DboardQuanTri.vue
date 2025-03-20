@@ -108,7 +108,7 @@
     <!-- NAVBAR -->
 
     <!-- MAIN -->
-    <main>
+    <!-- <main>
    
 
       <ul class="box-info">
@@ -222,16 +222,22 @@
           </ul>
         </div>
       </div>
-    </main>
+    </main> -->
     <!-- MAIN -->
+
+    <DboardBaiViet></DboardBaiViet>
   </section>
   <!-- CONTENT -->
 </template>
 
 <script>
 import { useAuthStore } from "@/assets/js/dboard/auth";
+import DboardBaiViet from "./DboardBaiViet.vue";
 
 export default {
+    components:{
+DboardBaiViet
+    },
   data() {
     return {
       authStore: "",

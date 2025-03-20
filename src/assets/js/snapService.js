@@ -1,5 +1,5 @@
 import axios from "axios";
-import { apiLogin } from "./api";
+import { apiGetLayBaiViet, apiLogin } from "./api";
 
 // axios.defaults.headers.common["Access-Control-Allow-Origin"] = import.meta.env.API_ORIGIN;
 // axios.defaults.headers.common["Access-Control-Allow-Methods"] = import.meta.env.API_METHODS;
@@ -9,13 +9,13 @@ import { apiLogin } from "./api";
 // axios.defaults.headers.common["Access-Control-Expose-Headers"] = import.meta.env.API_EXPOSE_HEADERS;
 
 export const postLogin = (user, pass) => {
-  return axios
-    .post(
-      apiLogin,
-      { user, pass },
-    
-    )
-    .then((res) => {
-      return res.data;
-    });
+  return axios.post(apiLogin, { user, pass }).then((res) => {
+    return res.data;
+  });
+};
+
+export const getBaiViet = () => {
+  return axios.get(apiGetLayBaiViet).then((res) => {
+    return res.data;
+  });
 };
