@@ -10,18 +10,19 @@
           <span class="has-float-label">
             <input
               class="form-control"
-              id="first"
               type="text"
+              v-model="titleBaiViet"
               placeholder="Nhập tiêu đề..."
             />
             <label style="font-size: 16px; font-weight: 600">Tiêu đề</label>
           </span>
+
           <span class="has-float-label mt-4">
             <input
               class="form-control"
               style="height: 100px"
-              id="last"
               type="text"
+              v-model="shortContent"
               placeholder="Nhập nội dung tóm tắt.."
             />
             <label style="font-size: 16px; font-weight: 600">Nội dung tóm tắt</label>
@@ -30,33 +31,49 @@
           <span class="has-float-label mt-4">
             <input
               class="form-control"
-              id="last"
               type="text"
               placeholder="Nhập url ảnh..."
+              v-model="urlImage"
             />
             <label style="font-size: 16px; font-weight: 600">url Ảnh hiển thị</label>
           </span>
 
           <span class="has-float-label mt-4">
-            <input class="form-control" id="last" type="text" placeholder="Surname" />
-            <label style="font-size: 16px; font-weight: 600">url</label>
+            <input
+              class="form-control"
+              type="text"
+              v-model="urlBaiViet"
+              placeholder="Nhập link bài viết (VD: ss-la-gi-tai-sao-su-dung-ssl)"
+            />
+            <label style="font-size: 16px; font-weight: 600">Link bài viết</label>
           </span>
 
           <span class="has-float-label mt-4">
             <label style="font-size: 16px; font-weight: 600">Nội dung bài viết</label>
-            <textarea id="editor" style="height: 500px;"></textarea>
+            <textarea id="editor1"></textarea>
           </span>
+        </div>
+        <div class="d-flex">
+          <button class="w-25" style="height: 50px; color: white" v-if="updateBaiViet">
+            Sửa bài viết
+          </button>
+          <button class="w-25" style="height: 50px; color: white" v-if="themBaiViet">
+            Thêm bài viết
+          </button>
         </div>
       </div>
 
       <div class="todo">
         <div class="head">
           <h3>Bài viết</h3>
-          <i class="bx bx-plus icon"></i>
-          <i class="bx bx-filter"></i>
         </div>
-        <ul class="todo-list" v-for="(itemBaiViet, index) in listBaiViet" :key="index">
-          <li class="completed">
+        <ul class="todo-list">
+          <li
+            v-for="(itemBaiViet, index) in listBaiViet"
+            :key="index"
+            class="completed"
+            @click="getChiTietBaiViet(itemBaiViet)"
+          >
             <strong>{{ decodeBase64(itemBaiViet.title) }}</strong>
             <span class="ml-lg-2 cursor-pointer">
               <i class="fa fa-times-circle" style="color: red" aria-hidden="true"></i>
@@ -72,32 +89,33 @@
 import { getBaiViet } from "@/assets/js/snapService";
 
 export default {
- 
+  name: "CkEditor",
   data() {
     return {
-      listBaiViet: "",
-      editor: '',
-      noiDung: "", // Không dùng ref() trong data()
+      listBaiViet: [],
+      titleBaiViet: "",
+      shortContent: "",
+      urlBaiViet: "",
+      urlImage: "",
+      contentBaiViet: "",
+      ckEditor: null,
+      themBaiViet: true,
+      updateBaiViet: false,
     };
   },
   async mounted() {
     await this.getListBaiViet();
-    setTimeout(() => {
-      if (window.ClassicEditor) {
-        // eslint-disable-next-line no-undef
-        ClassicEditor.create(document.querySelector("#editor"), {
-          height: 500, // Điều chỉnh chiều cao tại đây (đơn vị là pixel)
-        })
-          .then(editor => {
-            console.log("CKEditor đã khởi tạo!", editor);
-          })
-          .catch(error => {
-            console.error("Lỗi CKEditor:", error);
-          });
-      } else {
-        console.error("CKEditor chưa được tải!");
-      }
-    }, 500);
+
+    if (window.CKEDITOR) {
+      this.ckEditor = window.CKEDITOR.replace("editor1");
+
+      // Khi nội dung CKEditor thay đổi, cập nhật contentBaiViet
+      this.ckEditor.on("change", () => {
+        this.contentBaiViet = this.ckEditor.getData();
+      });
+    } else {
+      console.error("CKEditor chưa được load. Hãy kiểm tra lại việc import CKEditor.");
+    }
   },
   methods: {
     async getListBaiViet() {
@@ -110,22 +128,36 @@ export default {
       }
     },
     decodeBase64(encodedString) {
-      let decode = atob(encodedString);
-      decode = decodeURIComponent(escape(decode));
-      return decode;
+      try {
+        return decodeURIComponent(escape(atob(encodedString)));
+      } catch (error) {
+        console.error("Lỗi giải mã Base64:", error);
+        return encodedString;
+      }
+    },
+    getChiTietBaiViet(itemBaiViet) {
+      this.themBaiViet = false;
+      this.updateBaiViet = true;
+      this.titleBaiViet = this.decodeBase64(itemBaiViet.title);
+      this.contentBaiViet = this.decodeBase64(itemBaiViet.content);
+      this.shortContent = this.decodeBase64(itemBaiViet.shortContent);
+      this.urlImage = this.decodeBase64(itemBaiViet.urlImgBaiViet);
+      this.urlBaiViet = this.decodeBase64(itemBaiViet.shortURL);
+      // Cập nhật nội dung vào CKEditor
+      if (this.ckEditor) {
+        this.ckEditor.setData(this.contentBaiViet);
+      } else {
+        console.error("CKEditor chưa được khởi tạo.");
+      }
     },
   },
 };
 </script>
 
 <style scoped>
-.has-float-label .form-control:placeholder-shown:not(:focus) + * {
-  top: 13px;
-}
-
 .ck-editor__editable {
-  min-height: 300px !important; /* Điều chỉnh chiều cao */
-  width: 100% !important; /* Đảm bảo chiếm toàn bộ chiều rộng */
-  max-width: 100% !important; /* Giới hạn chiều rộng không vượt quá container */
+  min-height: 300px !important;
+  width: 100% !important;
+  max-width: 100% !important;
 }
 </style>

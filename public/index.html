@@ -8,7 +8,48 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.rawgit.com/tonystar/bootstrap-float-label/v3.0.1/dist/bootstrap-float-label.min.css"/>
-    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+    <!-- <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script> -->
+    <script>
+      // Sao lưu hàm console gốc
+      const originalLog = console.log;
+      const originalWarn = console.warn;
+      const originalError = console.error;
+      const originalInfo = console.info;
+    
+      // Tạo một hàm helper để kiểm tra thông báo CKEditor
+      function isCkeditorWarning(args) {
+        if (!args || !args.length) return false;
+        return args.some(arg =>
+          typeof arg === "string" &&
+          arg.includes("This CKEditor 4.22.1 version is not secure")
+        );
+      }
+    
+      // Ghi đè console.log
+      console.log = function(...args) {
+        if (isCkeditorWarning(args)) return;
+        originalLog.apply(console, args);
+      };
+    
+      // Ghi đè console.warn
+      console.warn = function(...args) {
+        if (isCkeditorWarning(args)) return;
+        originalWarn.apply(console, args);
+      };
+    
+      // Ghi đè console.error
+      console.error = function(...args) {
+        if (isCkeditorWarning(args)) return;
+        originalError.apply(console, args);
+      };
+    
+      // Ghi đè console.info
+      console.info = function(...args) {
+        if (isCkeditorWarning(args)) return;
+        originalInfo.apply(console, args);
+      };
+    </script>
+     <script src="/ckeditor/ckeditor.js"> </script>
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
