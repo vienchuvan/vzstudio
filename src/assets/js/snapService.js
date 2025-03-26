@@ -1,5 +1,5 @@
 import axios from "axios";
-import { apiGetLayBaiViet, apiLogin } from "./api";
+import { apiGetLayBaiViet, apiLogin, apiQuanTriBaiViet } from "./api";
 
 // axios.defaults.headers.common["Access-Control-Allow-Origin"] = import.meta.env.API_ORIGIN;
 // axios.defaults.headers.common["Access-Control-Allow-Methods"] = import.meta.env.API_METHODS;
@@ -19,3 +19,13 @@ export const getBaiViet = () => {
     return res.data;
   });
 };
+
+export const postUpdateBaiViet = (funcId, user, title, shortContent, content, urlImgBaiViet, shortUrl, id) =>{
+  
+  return axios.post(apiQuanTriBaiViet,{
+    funcId, user, title, shortContent, content, urlImgBaiViet, shortUrl, id
+  }).then((res)=>{
+    return res.data
+  });
+
+}

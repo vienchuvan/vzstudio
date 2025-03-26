@@ -54,7 +54,7 @@
           </span>
         </div>
         <div class="d-flex">
-          <button class="w-25" style="height: 50px; color: white" v-if="updateBaiViet">
+          <button class="w-25" @click="suaBaiViet()" style="height: 50px; color: white" v-if="updateBaiViet">
             Sửa bài viết
           </button>
           <button class="w-25" style="height: 50px; color: white" v-if="themBaiViet">
@@ -86,7 +86,7 @@
 </template>
 
 <script>
-import { getBaiViet } from "@/assets/js/snapService";
+import { getBaiViet, postUpdateBaiViet } from "@/assets/js/snapService";
 
 export default {
   name: "CkEditor",
@@ -101,6 +101,7 @@ export default {
       ckEditor: null,
       themBaiViet: true,
       updateBaiViet: false,
+      idBaiViet :'',
     };
   },
   async mounted() {
@@ -127,6 +128,7 @@ export default {
         console.log(err);
       }
     },
+  
     decodeBase64(encodedString) {
       try {
         return decodeURIComponent(escape(atob(encodedString)));
@@ -137,17 +139,30 @@ export default {
     },
     getChiTietBaiViet(itemBaiViet) {
       this.themBaiViet = false;
-      this.updateBaiViet = true;
+      this.updateBaiViet = true;  
       this.titleBaiViet = this.decodeBase64(itemBaiViet.title);
       this.contentBaiViet = this.decodeBase64(itemBaiViet.content);
       this.shortContent = this.decodeBase64(itemBaiViet.shortContent);
       this.urlImage = this.decodeBase64(itemBaiViet.urlImgBaiViet);
       this.urlBaiViet = this.decodeBase64(itemBaiViet.shortURL);
+      this.idBaiViet = itemBaiViet.id;
       // Cập nhật nội dung vào CKEditor
       if (this.ckEditor) {
         this.ckEditor.setData(this.contentBaiViet);
       } else {
         console.error("CKEditor chưa được khởi tạo.");
+      }
+    },
+
+    async suaBaiViet() {
+      try {
+
+        // funcId, user, title, shortContent, content, urlImgBaiViet, shortUrl, id
+        const resBaiViet = await postUpdateBaiViet(5,'0979951954',this.titleBaiViet, this.shortContent, this.contentBaiViet, this.urlImage, this.urlBaiViet, this.idBaiViet);
+     console.log(" resBaiViet ", resBaiViet);
+     
+      } catch (err) {
+        console.log(err);
       }
     },
   },
