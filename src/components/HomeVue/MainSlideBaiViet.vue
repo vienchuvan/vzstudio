@@ -130,7 +130,7 @@ import { decodeBase64 } from "@/assets/js/SnapWeb";
     // Nếu thuộc danh mục giáo dục, đổi sang "/giao-duc/"
     return hasEducationCategory 
       ? `${baseUrl}/giao-duc/${article.title_vi_short}`
-      : `${baseUrl}/chi-tiet.html/${article.id}`;
+      : `/bai-viet/${article.shortURL}`;
   },
     decodeBase64(encodedString) {
       var decode = decodeBase64(encodedString);

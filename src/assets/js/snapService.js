@@ -29,3 +29,11 @@ export const postUpdateBaiViet = (funcId, user, title, shortContent, content, ur
   });
 
 }
+export const getChiTietBaiViet = (funcId , shortUrl)=>{
+  return axios.post(apiQuanTriBaiViet,{
+    funcId, shortUrl
+  }).then((res)=>{
+    return res.data
+  });
+          
+}
