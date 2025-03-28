@@ -27,7 +27,10 @@
             />
             <label style="font-size: 16px; font-weight: 600">Nội dung tóm tắt</label>
           </span>
-
+          <span class="has-float-label mt-4">
+            <label style="font-size: 16px; font-weight: 600">Nội dung bài viết</label>
+            <textarea id="editor1"></textarea>
+          </span>
           <span class="has-float-label mt-4">
             <input
               class="form-control"
@@ -48,10 +51,7 @@
             <label style="font-size: 16px; font-weight: 600">Link bài viết</label>
           </span>
 
-          <span class="has-float-label mt-4">
-            <label style="font-size: 16px; font-weight: 600">Nội dung bài viết</label>
-            <textarea id="editor1"></textarea>
-          </span>
+       
         </div>
         <div class="d-flex">
           <button class="w-25" @click="suaBaiViet()" style="height: 50px; color: white" v-if="updateBaiViet">
@@ -156,9 +156,8 @@ export default {
 
     async suaBaiViet() {
       try {
-
-        // funcId, user, title, shortContent, content, urlImgBaiViet, shortUrl, id
-        const resBaiViet = await postUpdateBaiViet(5,'0979951954',this.titleBaiViet, this.shortContent, this.contentBaiViet, this.urlImage, this.urlBaiViet, this.idBaiViet);
+        const resBaiViet = await postUpdateBaiViet(5,'0979951954',this.titleBaiViet, 
+        this.shortContent, this.contentBaiViet, this.urlImage, this.urlBaiViet, this.idBaiViet);
      console.log(" resBaiViet ", resBaiViet);
      
       } catch (err) {
