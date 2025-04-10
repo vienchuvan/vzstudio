@@ -53,7 +53,7 @@
       <h2>Đẩy ảnh Content</h2>
     </div>
     <div v-if="selectedMenu === 'chinhsua'">
-      <h2>Chỉnh sửa Content</h2>
+     <DboardTemplate></DboardTemplate>
     </div>
   </section>
 </template>
@@ -61,10 +61,11 @@
 <script>
 import { useAuthStore } from "@/assets/js/dboard/auth";
 import DboardBaiViet from "./DboardBaiViet.vue";
+import DboardTemplate from "./DboardTemplate.vue";
 
 export default {
   components: {
-    DboardBaiViet,
+    DboardBaiViet,DboardTemplate
   },
   data() {
     return {
