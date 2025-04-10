@@ -1,6 +1,24 @@
 <template>
   <main>
     <div class="table-data">
+      <div class="todo">
+        <div class="head">
+          <h3>Bài viết</h3>
+        </div>
+        <ul class="todo-list">
+          <li
+            v-for="(itemBaiViet, index) in listBaiViet"
+            :key="index"
+            class="completed"
+            @click="getChiTietBaiViet(itemBaiViet)"
+          >
+            <strong>{{ decodeBase64(itemBaiViet.title) }}</strong>
+            <span class="ml-lg-2 cursor-pointer">
+              <i class="fa fa-times-circle" style="color: red" aria-hidden="true"></i>
+            </span>
+          </li>
+        </ul>
+      </div>
       <div class="order">
         <div class="head">
           <h3>Chi tiết</h3>
@@ -50,11 +68,14 @@
             />
             <label style="font-size: 16px; font-weight: 600">Link bài viết</label>
           </span>
-
-       
         </div>
         <div class="d-flex">
-          <button class="w-25" @click="suaBaiViet()" style="height: 50px; color: white" v-if="updateBaiViet">
+          <button
+            class="w-25"
+            @click="suaBaiViet()"
+            style="height: 50px; color: white"
+            v-if="updateBaiViet"
+          >
             Sửa bài viết
           </button>
           <button class="w-25" style="height: 50px; color: white" v-if="themBaiViet">
@@ -63,24 +84,7 @@
         </div>
       </div>
 
-      <div class="todo">
-        <div class="head">
-          <h3>Bài viết</h3>
-        </div>
-        <ul class="todo-list">
-          <li
-            v-for="(itemBaiViet, index) in listBaiViet"
-            :key="index"
-            class="completed"
-            @click="getChiTietBaiViet(itemBaiViet)"
-          >
-            <strong>{{ decodeBase64(itemBaiViet.title) }}</strong>
-            <span class="ml-lg-2 cursor-pointer">
-              <i class="fa fa-times-circle" style="color: red" aria-hidden="true"></i>
-            </span>
-          </li>
-        </ul>
-      </div>
+   
     </div>
   </main>
 </template>
@@ -101,7 +105,7 @@ export default {
       ckEditor: null,
       themBaiViet: true,
       updateBaiViet: false,
-      idBaiViet :'',
+      idBaiViet: "",
     };
   },
   async mounted() {
@@ -128,7 +132,7 @@ export default {
         console.log(err);
       }
     },
-  
+
     decodeBase64(encodedString) {
       try {
         return decodeURIComponent(escape(atob(encodedString)));
@@ -139,7 +143,7 @@ export default {
     },
     getChiTietBaiViet(itemBaiViet) {
       this.themBaiViet = false;
-      this.updateBaiViet = true;  
+      this.updateBaiViet = true;
       this.titleBaiViet = this.decodeBase64(itemBaiViet.title);
       this.contentBaiViet = this.decodeBase64(itemBaiViet.content);
       this.shortContent = this.decodeBase64(itemBaiViet.shortContent);
@@ -156,10 +160,23 @@ export default {
 
     async suaBaiViet() {
       try {
-        const resBaiViet = await postUpdateBaiViet(5,'0979951954',this.titleBaiViet, 
-        this.shortContent, this.contentBaiViet, this.urlImage, this.urlBaiViet, this.idBaiViet);
-     console.log(" resBaiViet ", resBaiViet);
-     
+        const resBaiViet = await postUpdateBaiViet(
+          5,
+          "0979951954",
+          this.titleBaiViet,
+          this.shortContent,
+          this.contentBaiViet,
+          this.urlImage,
+          this.urlBaiViet,
+          this.idBaiViet
+        );
+        console.log(" resBaiViet ", resBaiViet);
+        if (resBaiViet.status === 200) {
+          alert(resBaiViet.data.message);
+          window.location.reload();
+        } else {
+          alert("Có lỗi xảy ra, vui lòng thử lại sau !");
+        }
       } catch (err) {
         console.log(err);
       }

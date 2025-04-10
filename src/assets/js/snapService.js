@@ -25,7 +25,7 @@ export const postUpdateBaiViet = (funcId, user, title, shortContent, content, ur
   return axios.post(apiQuanTriBaiViet,{
     funcId, user, title, shortContent, content, urlImgBaiViet, shortUrl, id
   }).then((res)=>{
-    return res.data
+    return res
   });
 
 }
