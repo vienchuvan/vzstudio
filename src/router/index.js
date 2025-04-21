@@ -5,6 +5,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import DboardQuanTriVue from '@/components/Dboard/DboardQuanTri.vue';
 import BlogGioiThieuVue from '@/components/BlogGioiThieu.vue';
 import TemplateWeb from '@/components/templateVue/templateWeb.vue';
+import ListTemplate from '@/components/templateVue/ListTemplate.vue';
 
 
 const routes = [
@@ -18,6 +19,8 @@ const routes = [
    },
    {
     path: '/project', name: 'TemplateWeb', component: TemplateWeb
+   },  {
+    path: '/danh-muc', name: 'ListTemplate', component: ListTemplate
    }
 ];
 

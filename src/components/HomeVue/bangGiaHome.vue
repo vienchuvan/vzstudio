@@ -31,7 +31,7 @@
           <!-- <div class="plan-link">
             <a class="btn btn-bordered" href="#">Tư vấn</a>
           </div> -->
-          <div class="plan-link d-flex justify-content-center"><button style="    margin-bottom: 5px;
+          <div class="plan-link d-flex justify-content-center"><button style="margin-bottom: 5px;
     margin-top: 5px;">
           <span>Tư vấn </span>
         </button></div>
