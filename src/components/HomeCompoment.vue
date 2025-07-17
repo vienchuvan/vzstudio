@@ -1,3 +1,5 @@
+<!-- eslint-disable vue/no-unused-components -->
+<!-- eslint-disable vue/no-unused-components -->
 <template>
   <header class="header-dv-crop" :class="{ active: isScrolled }" data-header>
     <div class="container-dv-crop">
@@ -96,13 +98,14 @@
         </div>
       </div>
     </div>
- 
-    <DanhMucHome></DanhMucHome>
+ <SanPhamHome></SanPhamHome>
+     <!-- <DanhMucHome></DanhMucHome>  -->
     <BangGiaHome></BangGiaHome>
+    <TuVanFree></TuVanFree>
     <QuyTrinhHome></QuyTrinhHome>
     <VeChungToi></VeChungToi>
 
-    <MainSlideBaiViet> </MainSlideBaiViet>
+   <MainSlideBaiViet> </MainSlideBaiViet> 
    <FooterHome> </FooterHome>
   </main>
   <ContactHome></ContactHome>
@@ -113,6 +116,7 @@ import { ref, onMounted, onUnmounted } from "vue";
 import WOW from "wowjs";
 import { imageUrls } from "@/assets/js/imgUrl";
 import BannerHome from "./HomeVue/bannerHome.vue";
+// eslint-disable-next-line no-unused-vars
 import DanhMucHome from "./HomeVue/danhMucHome.vue";
 import QuyTrinhHome from "./HomeVue/quyTrinhHome.vue";
 import ContactHome from "./HomeVue/ContactHome.vue";
@@ -120,15 +124,18 @@ import VeChungToi from "./HomeVue/veChungToi.vue";
 import BangGiaHome from "./HomeVue/bangGiaHome.vue";
 import FooterHome from "./Footer-home.vue";
 import MainSlideBaiViet from "./HomeVue/MainSlideBaiViet.vue";
+import TuVanFree from "./HomeVue/TuVanFree.vue";
+import SanPhamHome from "./HomeVue/sanPhamHome.vue";
 
 export default {
   components: {
     BannerHome,
-    DanhMucHome,
+    SanPhamHome,
     QuyTrinhHome,
     ContactHome,
     VeChungToi,
-    BangGiaHome,FooterHome,MainSlideBaiViet
+    BangGiaHome,FooterHome,TuVanFree,MainSlideBaiViet
+    
   },
   setup() {
     const isNavActive = ref(false);

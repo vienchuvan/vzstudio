@@ -14,7 +14,7 @@ import './assets/css/dboard.css'
 import { createPinia } from 'pinia';
 // // import './assets/js/bootstrap.min.js'
 // import './assets/js/swiper.min.js'
-// import'./assets/js/scripts.js'
+// import'./assets/js/scripts.js
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'

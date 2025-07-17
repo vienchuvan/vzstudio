@@ -1,100 +1,92 @@
 <template>
-  <div class="slider mt-5" :class="{ 'slide-next': isNext, 'slide-prev': isPrev }">
-    <article
-      class="one_quarter"
-      v-for="(article, index) in displayedArticles"
-      :key="index"
-    >
-      <div style="height: auto">
-        <a class="imgover" :href="getArticleLink(article)">
-          <img
-            style="max-width: 100%; margin: 0 auto; border-radius: 10px"
-            :src="article.urlImgBaiViet"
-             
-            alt=""
-          />
-        </a>
-      </div>
-      <div class="excerpt">
-        <h6 class="heading" style="margin-top: 10px; font-family: auto; font-size: 18px; color: white;">
-         {{ decodeBase64(article.title) }}
-        </h6>
-        <p style="max-height: 200px; overflow: hidden; color: white;">
-          {{ decodeBase64(article.shortContent) }}
-        </p>
-        <footer>
+  <section class="slider-container container mt-5" aria-label="Danh sách bài viết">
+    <div class="slider-grid">
+      <article
+        class="slider-card"
+        v-for="(article, index) in displayedArticles"
+        :key="index"
+        itemscope
+        itemtype="https://schema.org/Article"
+      >
+        <figure class="card-image-wrapper">
           <a
-            :href="'bai-viet/' + article.shortURL"
+            :href="getArticleLink(article)"
+            :aria-label="'Xem bài viết: ' + decodeText(article.title)"
           >
-            <i class="fas fa-angle-right"></i> Đọc tiếp
+            <img
+              class="card-image"
+              :src="article.urlImgBaiViet"
+              :alt="decodeText(article.title)"
+              loading="lazy"
+              itemprop="image"
+            />
+            <div class="card-image-overlay">
+              <i class="fa fa-eye" aria-hidden="true"></i>
+            </div>
+          </a>
+        </figure>
+        <header class="card-content">
+          <h2 class="card-title" itemprop="headline">
+            {{ decodeText(article.title) }}
+          </h2>
+          <p class="card-description" itemprop="description">
+            {{ decodeText(article.shortContent) }}
+          </p>
+        </header>
+        <footer class="card-footer">
+          <a :href="getArticleLink(article)" class="read-more" itemprop="url">
+            Đọc tiếp <i class="fa fa-angle-right" aria-hidden="true"></i>
           </a>
         </footer>
-      </div>
-    </article>
-    <div></div>
-    <!-- <button @click="prevPage" :disabled="currentPage === 1">Previous</button>
-      <button @click="nextPage" :disabled="currentPage === totalPages">Next</button> -->
-    <div
-      style="
-        display: flex;
-        width: 100%;
-        position: absolute;
-        top: 20%;
-        z-index: 1;
-        justify-content: space-between;
-      "
-    >
+      </article>
+    </div>
+
+    <nav class="slider-nav" role="navigation" aria-label="Điều hướng bài viết">
       <button
         @click="prevPage"
         :disabled="currentPage === 1"
-        class="danhmuc-prev"
-        style="width: 30px; height: 30px; border: none; border-radius: 30px"
+        class="nav-button"
+        aria-label="Bài trước"
       >
-        <i
-          style="font-size: 30px; color: #007aba"
-          class="fa fa-chevron-circle-left"
-          aria-hidden="true"
-        ></i>
+        <i class="fa fa-chevron-left"></i>
       </button>
       <button
         @click="nextPage"
         :disabled="currentPage === totalPages"
-        class="danhmuc-next"
-        style="width: 30px; height: 30px; border: none; border-radius: 30px"
+        class="nav-button"
+        aria-label="Bài tiếp theo"
       >
-        <i
-          style="font-size: 30px; color: #007aba"
-          class="fa fa-chevron-circle-right"
-          aria-hidden="true"
-        ></i>
+        <i class="fa fa-chevron-right"></i>
       </button>
-    </div>
-  </div>
+    </nav>
+  </section>
 </template>
-<script> 
 
-import axios from 'axios';
-import { decodeBase64 } from "@/assets/js/SnapWeb";
 
-  export default {
+<script>
+import axios from "axios";
+import { decrypt } from "@/assets/js/crypto";
+
+export default {
   data() {
     return {
       articles: [],
       currentPage: 1,
       articlesPerPage: 4,
-      lang:"",
-    
-
-     
-      
+      lang: "",
     };
   },
 
-  mounted(){
+  mounted() {
     this.fetchData();
-    this.updateArticlesPerPage(); // Call to set initial value based on screen size
-    window.addEventListener('resize', this.updateArticlesPerPage);
-    },
+    this.updateArticlesPerPage();
+    window.addEventListener("resize", this.updateArticlesPerPage);
+  },
+
+  // eslint-disable-next-line vue/no-deprecated-destroyed-lifecycle
+  beforeDestroy() {
+    window.removeEventListener("resize", this.updateArticlesPerPage);
+  },
 
   computed: {
     totalPages() {
@@ -102,100 +94,163 @@ import { decodeBase64 } from "@/assets/js/SnapWeb";
     },
     displayedArticles() {
       const start = (this.currentPage - 1) * this.articlesPerPage;
-      const end = start + this.articlesPerPage;
-      return this.articles.slice(start, end);
+      return this.articles.slice(start, start + this.articlesPerPage);
     },
   },
+
   methods: {
-   async fetchData() {
+    async fetchData() {
       try {
-        // Thực hiện POST request
-        const response = await axios.get("http://103.200.23.120:3000/api/quantri/services/getBaiViet");
-        this.articles =  response.data.response
-        console.log("response ", response.data.response);
-        
-      }catch(error){
-        console.error("Error:", error);
+        const res = await axios.get("http://103.200.23.120:3000/api/quantri/services/getBaiViet");
+        this.articles = decrypt(res.data).data;
+      } catch (err) {
+        console.error("Fetch error:", err);
       }
-
     },
-
     getArticleLink(article) {
-    // Kiểm tra nếu article có danh mục cha là "1740736671675mXP8J"
-    const hasEducationCategory = article.catParam?.some(cat => cat.idDanhMucCha === "1740736671675mXP8J");
-
-    // Xác định base URL theo ngôn ngữ
-    const baseUrl = (this.lang === null || this.lang === '') ? 'vi' : this.lang;
-    
-    // Nếu thuộc danh mục giáo dục, đổi sang "/giao-duc/"
-    return hasEducationCategory 
-      ? `${baseUrl}/giao-duc/${article.title_vi_short}`
-      : `/bai-viet/${article.shortURL}`;
-  },
-    decodeBase64(encodedString) {
-      var decode = decodeBase64(encodedString);
-      decode = decodeURIComponent(escape(decode));
-      return decode;
+      const isEducation = article.catParam?.some(cat => cat.idDanhMucCha === "1740736671675mXP8J");
+      const baseUrl = this.lang || "vi";
+      return isEducation
+        ? `${baseUrl}/giao-duc/${article.title_vi_short}`
+        : `/bai-viet/${article.shortURL}`;
+    },
+    decodeText(str) {
+      try {
+        return decodeURIComponent(escape(atob(str)));
+      } catch {
+        return str;
+      }
     },
     nextPage() {
-      if (this.currentPage < this.totalPages) {
-       
-        this.currentPage++;
-      } else {
-    
-        this.currentPage = 1; // Loop to the first page if on the last page
-      }
+      this.currentPage = this.currentPage < this.totalPages ? this.currentPage + 1 : 1;
     },
     prevPage() {
-      if (this.currentPage > 1) {
-     
-        this.currentPage--;
-      } else {
-       
-        this.currentPage = this.totalPages; // Loop to the last page if on the first page
-      }
+      this.currentPage = this.currentPage > 1 ? this.currentPage - 1 : this.totalPages;
     },
     updateArticlesPerPage() {
-      // Adjust articlesPerPage based on screen size
-      if (window.innerWidth <= 768) {
-        this.articlesPerPage = 1; // Set to 1 for smaller screens (adjust as needed)
-      } else {
-        this.articlesPerPage = 4; // Set to default value for larger screens
-      }
+      this.articlesPerPage = window.innerWidth <= 768 ? 1 : 4;
     },
-    beforeDestroy() {
-    window.removeEventListener('resize', this.updateArticlesPerPage);
   },
-  },
-
 };
 </script>
 
+<style scoped>
+/* Wrapper */
+.slider-container {
+  position: relative;
+  padding: 10px;
+}
 
-<style scoped> 
+/* Grid layout */
+.slider-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
 
-.slider {
+/* Card base */
+.slider-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
   display: flex;
-  transition: transform 0.5s ease-in-out !important;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+}
+.slider-card:hover {
+  transform: translateY(-5px);
 }
 
-.slide-next {
-  transform: translateX(-100%) !important;
+/* Image */
+.card-image-wrapper {
+  position: relative;
+  display: block;
+}
+.card-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.card-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card-image-wrapper:hover .card-image-overlay {
+  opacity: 1;
+}
+.card-image-overlay i {
+  font-size: 28px;
+  color: white;
 }
 
-.slide-prev {
-  transform: translateX(100%) !important;
+/* Content */
+.card-content {
+  padding: 16px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
-.slider img {width: 98%;border: 1px solid #e5e5e5;margin: 0 auto;}
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #111827;
+  text-align: justify;
+}
+.card-description {
+  color: #4b5563;
+  font-size: 14px;
+  text-align: justify;
+  overflow: hidden;
+  max-height: 100px;
+  flex-grow: 1;
+}
+.card-footer {
+  text-align: right;
+  margin-top: 12px;
+}
+.read-more {
+  color: #007aba;
+  text-decoration: none;
+  font-weight: 600;
+}
+.read-more:hover {
+  text-decoration: underline;
+}
 
-.imgover{display:inline-block; position:relative; max-width:100%; width: 100%}
-.imgover::before, .imgover::after{display:block; position:absolute; content:""; text-align:center; opacity:0;}
-.imgover::before{top:0; right:0; bottom:0; left:0;}
-.imgover::after{top:50%; left:50%; width:50px; height:50px; line-height:50px; margin:-25px 0 0 -25px; font-family:"Font Awesome\ 5 Free"; font-weight:900; content:"\f06e";/* fa-eye */ font-size:28px;}
-.imgover:hover::before, .imgover:hover::after{opacity:1;}
-
-.one_quarter{width:24.5%;margin: 0;margin-left: .5%;}
-@media (max-width: 768px) {
-
-.one_quarter{width:100%;margin: 0;margin-left: .5%;}}
+/* Navigation */
+.slider-nav {
+  position: absolute;
+  top: 45%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+.nav-button {
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  color: #007aba;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.nav-button:hover {
+  transform: scale(1.1);
+}
 </style>

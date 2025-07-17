@@ -33,5 +33,8 @@ iconGia: "img/icon/iconMonney.png",
      iconThietKe: "img/icon/iconThietKe.webp",
      iconDemo: "img/icon/iconDemo.webp",
      iconBanGiao: "img/icon/iconBaoHanh.webp",
-     iconZalo:"img/icon/iconZalo.svg",
+     iconZalo: "img/icon/iconZalo.svg",
+
+
+     videoThanhPho: "video/thanhPho.mp4",
 }

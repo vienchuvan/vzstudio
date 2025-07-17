@@ -36,7 +36,7 @@
     "postcss": "^8.5.3",
     "sass": "^1.84.0",
     "sass-loader": "^16.0.4",
-    "tailwindcss": "^4.1.4"
+    "tailwindcss": "^3.4.17"
   },
   "eslintConfig": {
     "root": true,
